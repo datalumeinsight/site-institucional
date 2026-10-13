@@ -43,7 +43,7 @@ Registre **datalumeinsight.com.br** com titular **CNPJ 60.778.624/0001-66**, nã
 3. Espere a propagação. O HTTPS (Let's Encrypt) é ativado sozinho.
 
 ### 4. E-mail no domínio (recomendado)
-Hoje o site usa `sotero@datalumeapp.com`, que é de outro domínio. Para o D-U-N-S e para a Apple, prefira
+Hoje o site usa `contato@datalumeapp.com`, que é de outro domínio. Para o D-U-N-S e para a Apple, prefira
 `contato@datalumeinsight.com.br` (Zoho Mail, Google Workspace ou Microsoft 365) e atualize os HTML.
 
 ---
