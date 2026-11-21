@@ -5,11 +5,11 @@ Site de **https://datalumeinsight.com.br**, da DATALUME INSIGHT LTDA (CNPJ 60.77
 
 ```
 public/
-├── index.html          → Home: Sobre, Serviços, Como trabalhamos, Dados da empresa, Contato
+├── index.html          → Landing page: soluções, abordagem, empresa e contato
 ├── privacidade.html    → Política de Privacidade (LGPD)
 ├── termos.html         → Termos de Uso
 ├── robots.txt / sitemap.xml
-└── assets/ (styles.css, logo.svg)
+└── assets/ (styles.css, logos e ícones)
 netlify.toml            → configuração do Netlify (pasta publicada, redirect www, headers)
 ```
 
