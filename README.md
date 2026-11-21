@@ -6,6 +6,7 @@ Site de **https://datalumeinsight.com.br**, da DATALUME INSIGHT LTDA (CNPJ 60.77
 ```
 public/
 ├── index.html          → Landing page: soluções, abordagem, empresa e contato
+├── obrigado.html       → Confirmação para envio do formulário sem JavaScript
 ├── privacidade.html    → Política de Privacidade (LGPD)
 ├── termos.html         → Termos de Uso
 ├── robots.txt / sitemap.xml
@@ -19,8 +20,10 @@ netlify.toml            → configuração do Netlify (pasta publicada, redirect
 2. Para visualizar localmente, rode `python -m http.server 8000 --directory public` e abra http://localhost:8000.
 3. Faça commit e push na `main`. O Netlify publica sozinho em cerca de 1 minuto.
 
-> Dados da empresa (e-mail, telefone, endereço) aparecem nos 3 HTML e no JSON-LD do `index.html`.
+> Dados da empresa (e-mail, telefone, endereço) aparecem nos HTML institucionais e no JSON-LD do `index.html`.
 > Quando algum mudar, use buscar e substituir em `public/`.
+
+O formulário de contato usa Netlify Forms. No painel do site, ative **Forms → Enable form detection** e configure **Forms → Submission notifications** para receber os envios em `contato@datalumeapp.com`. As mensagens ficam disponíveis na área Forms do Netlify.
 
 ---
 

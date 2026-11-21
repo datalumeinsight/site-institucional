@@ -84,7 +84,25 @@
       </div>
     </section>
     <section id="empresa" class="company-strip" aria-labelledby="company-title"><div class="container company-inner" data-reveal><div><p class="eyebrow">Sobre a Datalume</p><h2 id="company-title">Tecnologia feita por pessoas, para pessoas.</h2></div><p>A DATALUME INSIGHT LTDA é uma empresa de tecnologia sediada em São Paulo. Atuamos em consultoria, desenvolvimento e licenciamento de software, tratamento de dados e serviços de aplicação na internet.</p></div></section>
-    <section id="contato" class="contact-section section-pad" aria-labelledby="contact-title"><div class="container contact-inner" data-reveal><p class="eyebrow">Próximo passo</p><h2 id="contact-title">Vamos fazer acontecer?</h2><p>Conte seu desafio. Podemos pensar juntos no melhor caminho.</p><a class="button button-light" href="mailto:contato@datalumeapp.com?subject=Contato%20pelo%20site%20-%20Datalume%20Insight">Enviar um e-mail</a><a class="contact-email" href="mailto:contato@datalumeapp.com">contato@datalumeapp.com</a></div></section>
+    <section id="contato" class="contact-section section-pad" aria-labelledby="contact-title">
+      <div class="container contact-inner" data-reveal>
+        <p class="eyebrow">Próximo passo</p>
+        <h2 id="contact-title">Vamos fazer acontecer?</h2>
+        <p>Conte seu desafio. Podemos pensar juntos no melhor caminho.</p>
+        <form class="contact-form" name="contato" method="POST" action="/obrigado.html" data-netlify="true" data-netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contato">
+          <p class="form-honeypot" aria-hidden="true"><label>Não preencha este campo <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+          <div class="form-row">
+            <div class="form-field"><label for="contact-name">Nome</label><input id="contact-name" name="name" type="text" autocomplete="name" placeholder="Seu nome" required maxlength="100"></div>
+            <div class="form-field"><label for="contact-email">E-mail</label><input id="contact-email" name="email" type="email" autocomplete="email" placeholder="voce@empresa.com" required maxlength="254"></div>
+          </div>
+          <div class="form-field message-field"><label for="contact-message">Mensagem</label><textarea id="contact-message" name="message" rows="5" placeholder="Conte um pouco sobre o que você precisa" required maxlength="3000"></textarea></div>
+          <div class="form-bottom"><p>Veja como tratamos seus dados na <a href="privacidade.html">Política de Privacidade</a>.</p><button class="button button-light" type="submit">Enviar mensagem</button></div>
+          <p class="form-status" role="status" aria-live="polite" hidden></p>
+        </form>
+        <a class="contact-email" href="mailto:contato@datalumeapp.com">Prefere e-mail? contato@datalumeapp.com</a>
+      </div>
+    </section>
   </main>
   <footer class="site-footer"><div class="container"><div class="footer-main"><a class="footer-brand" href="index.html">Datalume <strong>Insight</strong></a><div class="footer-links"><a href="#solucoes">Soluções</a><a href="#abordagem">Abordagem</a><a href="#empresa">Empresa</a><a href="privacidade.html">Privacidade</a><a href="termos.html">Termos de Uso</a></div></div><div class="footer-legal"><span>© <span class="year">2026</span> DATALUME INSIGHT LTDA · CNPJ 60.778.624/0001-66</span><span>Rua Pais Leme, 215, Conj. 1713 · Pinheiros, São Paulo – SP · CEP 05424-150</span><span><a href="tel:+5561986665795">(61) 98666-5795</a> · <a href="mailto:contato@datalumeapp.com">contato@datalumeapp.com</a></span></div></div></footer>
   <script>
@@ -95,6 +113,37 @@
       targets.forEach(target => observer.observe(target));
       document.documentElement.classList.add('reveal-ready');
     }
+    const contactForm = document.querySelector('.contact-form');
+    contactForm.addEventListener('submit', async event => {
+      event.preventDefault();
+      const button = contactForm.querySelector('button[type="submit"]');
+      const status = contactForm.querySelector('.form-status');
+      button.disabled = true;
+      button.textContent = 'Enviando…';
+      status.hidden = true;
+      try {
+        if (contactForm.hasAttribute('data-netlify')) throw new Error('Formulário ainda não ativado');
+        const response = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(new FormData(contactForm)).toString()
+        });
+        if (!response.ok) throw new Error('Falha no envio');
+        contactForm.reset();
+        contactForm.querySelector('.form-row').hidden = true;
+        contactForm.querySelector('.message-field').hidden = true;
+        contactForm.querySelector('.form-bottom').hidden = true;
+        status.textContent = 'Mensagem enviada. Obrigado pelo contato! Retornaremos em breve.';
+        status.classList.remove('is-error');
+        status.hidden = false;
+      } catch {
+        status.textContent = 'Não foi possível enviar agora. Tente novamente ou use o e-mail abaixo.';
+        status.classList.add('is-error');
+        status.hidden = false;
+        button.disabled = false;
+        button.textContent = 'Enviar mensagem';
+      }
+    });
   </script>
 </body>
 </html>
