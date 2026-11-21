@@ -118,6 +118,9 @@ h1,h2,h3{letter-spacing:-.06em}
 .contact-email{font-size:.86rem;color:#aeb4bd;margin-top:22px}
 .contact-email:hover{text-decoration:underline}
 .contact-form{width:min(100%,720px);margin-top:8px;text-align:left}
+.contact-form[data-netlify]{display:none}
+.form-setup-note{display:none;max-width:480px;color:#c5ccd3;margin:7px 0 0;font-size:1rem}
+.contact-form[data-netlify]+.form-setup-note{display:block}
 .form-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .form-field{display:flex;flex-direction:column;gap:9px;margin-bottom:17px}
 .form-field label{font-size:.86rem;font-weight:600;color:#e7eaee}
